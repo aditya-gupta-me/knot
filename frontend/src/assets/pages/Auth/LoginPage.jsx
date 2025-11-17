@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
 
 function LoginPage() {
   return (
-    <div>LoginPage</div>
-  )
+    <>
+      <div className="container">
+        <h1>Login Page</h1>
+      </div>
+    </>
+  );
 }
 
-export default LoginPage
+export default LoginPage;
