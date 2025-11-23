@@ -8,6 +8,7 @@ import LoginPage from "./assets/pages/Auth/LoginPage";
 
 // stylesheets
 import "./App.css";
+import NoMatch from "./assets/components/NoMatch";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegistrationPage />} />
+        <Route path="*" element={<NoMatch />} />
       </Routes>
     </>
   );
