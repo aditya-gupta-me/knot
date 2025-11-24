@@ -3,6 +3,8 @@ const cors = require("cors");
 const app = express();
 require("dotenv").config();
 
+const loginRoute = require("./routes/loginRoute");
+
 const corsOptions = {
   origin: process.env.FRONTEND_URL,
   optionSuccessStatus: 200,
@@ -10,6 +12,9 @@ const corsOptions = {
 const PORT = process.env.PORT;
 
 app.use(cors());
+app.use(express.json());
+
+app.use("/api/login", loginRoute);
 
 // base endpoint
 app.get("/", (req, res) => {
