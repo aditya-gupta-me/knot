@@ -3,7 +3,7 @@ const cors = require("cors");
 const app = express();
 require("dotenv").config();
 
-const loginRoute = require("./routes/loginRoute");
+const loginRoute = require("./Routes/loginRoute");
 
 const corsOptions = {
   origin: process.env.FRONTEND_URL,
