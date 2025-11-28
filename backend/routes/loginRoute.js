@@ -1,4 +1,5 @@
-const express = require("express");
+import express from "express";
+
 const router = express.Router();
 
 router.post("/", (req, res) => {
@@ -8,4 +9,4 @@ router.post("/", (req, res) => {
   res.status(200).json({ message: `Login API hit!` });
 });
 
-module.exports = router;
+export default router;

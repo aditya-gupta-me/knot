@@ -1,9 +1,12 @@
-const express = require("express");
-const cors = require("cors");
-const app = express();
-require("dotenv").config();
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import db from "./models/index.js";
+import loginRoute from "./routes/loginRoute.js";
 
-const loginRoute = require("./Routes/loginRoute");
+dotenv.config();
+
+const app = express();
 
 const corsOptions = {
   origin: process.env.FRONTEND_URL,
@@ -34,7 +37,19 @@ app.get("/register", (req, res) => {
   res.status(200).json({ message: "here' some response back!" });
 });
 
+const initializeRoles = async () => {
+  const roles = ["user", "moderator", "admin"];
+  for (const role of roles) {
+    await db.role.findOrCreate({
+      where: { name: role },
+    });
+  }
+};
+
 // server listening
-app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
+db.sequelize.sync().then(async () => {
+  await initializeRoles();
+  app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}.`);
+  });
 });
